@@ -38,11 +38,17 @@ describe('Funcionalidade: Login', () => {
         cy.get('.woocommerce-error').should('exist')
     });
 
-    it.only('Deve fazer login com sucesso - Usando massa de dados', () => {
+    it('Deve fazer login com sucesso - Usando massa de dados', () => {
         cy.get('#username').type(perfil.usuario)
         cy.get('#password').type(perfil.senha)
         cy.get('.woocommerce-form > .button').click()           
         cy.get('.woocommerce-MyAccount-content > :nth-child(2)').should('contain' , 'Olá, marcosj.antonio3 (não é marcosj.antonio3? Sair)')
     });   
+
+    it.only('Deve fazer login com sucesso - usando Comandos customizado', () => {
+        cy.login('marcosj.antonio3@gmail.com', 'M@rcos19')
+        cy.get('.woocommerce-MyAccount-content > :nth-child(2)').should('contain' , 'Olá, marcosj.antonio3 (não é marcosj.antonio3? Sair)')
+
+    });
 
 });
